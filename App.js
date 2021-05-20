@@ -8,12 +8,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.textHeader}>David Ong TW</Text>
       <Text style={styles.title}>Bus arrival time:</Text>
       <Text style={styles.arrivalTime}>
         {loading ? "Loading...": "Loaded"}
       </Text>
     <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>Refresh!</Text>
+      <Text style={styles.textButton}>Refresh!</Text>
     </TouchableOpacity>
     </View>
   );
@@ -22,30 +23,35 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#40C9D7',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   textHeader:{
-    marginBottom:20,
-    fontSize: 20,
+    marginBottom:10,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#4050D7'
   },
-  textTime: {
-marginBottom: 20,
-fontSize: 40,
+  title: {
+marginBottom: 10,
+fontSize: 30,
 color: '#D79940',
   },
+  arrivalTime: {
+    marginBottom: 10,
+    fontSize: 30,
+    color: '#D79940',
+      },
 button: {
 marginBottom: 20,
-borderRadius: 5,
+borderRadius: 15,
 backgroundColor: '#D740D0',
 paddingVertical: 20,
-paddingHorizontal: 20,
+paddingHorizontal: 80,
 },
 textButton:{
-    fontSize: 20,
+    fontSize: 30,
     color: '#9ED740'
 
 }
