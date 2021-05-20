@@ -26,4 +26,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textHeader:{
+    marginBottom:20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#4050D7'
+  },
+  textTime: {
+marginBottom: 20,
+fontSize: 40,
+color: '#D79940',
+  },
+button: {
+marginBottom: 20,
+borderRadius: 5,
+backgroundColor: '#D740D0',
+paddingVertical: 20,
+paddingHorizontal: 20,
+},
+textButton:{
+    fontSize: 20,
+    color: '#9ED740'
+
+}
+
 });
+
+
+
+// console.map to get each data
