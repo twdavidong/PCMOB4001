@@ -11,6 +11,9 @@ export default function App() {
   const BUSSTOP_URL = "https://arrivelah2.busrouter.sg/?id=54101"
 
   function loadBusStopData() {
+
+    setLoading(true);
+
     fetch(BUSSTOP_URL)
       .then((response) => {
         return response.json();
@@ -19,7 +22,7 @@ export default function App() {
         // console.log("Original data: ");
         // console.log(responseData);
         const myBus = responseData.services.filter(
-          (item) => item.no === "45"
+          (item) => item.no === "133"
           )[0];
           setArrival(myBus.next.time);
           setLoading(false);
@@ -29,17 +32,19 @@ export default function App() {
   }
 
   useEffect(() => {
-    loadBusStopData();
+    const interval = setInterval(loadBusStopData, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.textHeader}>David Ong TW</Text>
       <Text style={styles.textHeader}>Bus Stop No: After Ang Mo Kio Ave 10</Text>
-      <Text style={styles.textHeader}>Bus No:45</Text>
+      <Text style={styles.textHeader}>Bus No: 133</Text>
       <Text style={styles.textHeader}>Bus Arrival Time:</Text>
       <Text style={styles.arrivalTime}>
-        {loading ? <ActivityIndicator size= "large"/>: arrival}
+        {loading ? <ActivityIndicator size= "large"/> : arrival}
       </Text>
     <TouchableOpacity style={styles.button}>
       <Text style={styles.textButton}>Refresh!</Text>
