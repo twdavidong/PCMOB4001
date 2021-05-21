@@ -1,17 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { ActivityIndicator, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
 
+  const [arrival, setArrival] = useState("");
+
   const [loading, setLoading] = useState(true);
+
+  const BUSSTOP_URL = "https://arrivelah2.busrouter.sg/?id=54101"
+
+  function loadBusStopData() {
+    fetch(BUSSTOP_URL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseData) => {
+        // console.log("Original data: ");
+        // console.log(responseData);
+        const myBus = responseData.services.filter(
+          (item) => item.no === "45"
+          )[0];
+          setArrival(myBus.next.time);
+          setLoading(false);
+        //  console.log("My bus :");
+        //  console.log(myBus);
+      });
+  }
+
+  useEffect(() => {
+    loadBusStopData();
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.textHeader}>David Ong TW</Text>
-      <Text style={styles.title}>Bus arrival time:</Text>
+      <Text style={styles.textHeader}>Bus Stop No: After Ang Mo Kio Ave 10</Text>
+      <Text style={styles.textHeader}>Bus No:45</Text>
+      <Text style={styles.textHeader}>Bus Arrival Time:</Text>
       <Text style={styles.arrivalTime}>
-        {loading ? "Loading...": "Loaded"}
+        {loading ? <ActivityIndicator size= "large"/>: arrival}
       </Text>
     <TouchableOpacity style={styles.button}>
       <Text style={styles.textButton}>Refresh!</Text>
